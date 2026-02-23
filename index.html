@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile Clone</title>
+    <title>User Info</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -57,6 +57,9 @@
             font-weight: 700;
             margin: 0;
             margin-right: 15px;
+            line-height: 1.2;
+            word-break: break-word;
+            /* Prevents overflow */
         }
 
         .btn {
@@ -92,6 +95,14 @@
             text-decoration: none;
         }
 
+        /* Responsive utilities for buttons */
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         /* Layout Grid */
         .grid {
             display: grid;
@@ -102,6 +113,37 @@
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 20px 15px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 26px;
+            }
+
+            .profile-title {
+                font-size: 24px;
+                margin-right: 0;
+                width: 100%;
+                /* Force breaking early if long text */
+                margin-bottom: 10px;
+            }
+
+            .profile-title-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                width: 100%;
             }
         }
 
@@ -125,6 +167,11 @@
         a {
             color: #0f6cb6;
             text-decoration: none;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            /* Ensure mailto and links break instead of overflowing */
+            display: inline-block;
+            max-width: 100%;
         }
 
         a:hover {
@@ -163,6 +210,7 @@
 
         .detail-value {
             color: #212529;
+            word-wrap: break-word;
         }
 
         /* Edit form styling */
@@ -194,6 +242,8 @@
         .edit-buttons {
             display: flex;
             gap: 10px;
+            width: 100%;
+            justify-content: flex-end;
         }
 
         .btn-save {
@@ -242,11 +292,13 @@
             <div class="avatar">A2</div>
             <div class="profile-title-container">
                 <h1 class="profile-title">ADITYA KUMAR 23-24 Batch</h1>
-                <button class="btn" onclick="resetAiButtons()"><i class="fas fa-comment"></i> Message</button>
-                <button class="btn btn-ai" id="btn-chatgpt"
-                    onclick="handleAiLinkClick('https://chatgpt.com')">C</button>
-                <button class="btn btn-ai" id="btn-gemini"
-                    onclick="handleAiLinkClick('https://gemini.google.com')">G</button>
+                <div class="header-buttons">
+                    <button class="btn" onclick="resetAiButtons()"><i class="fas fa-comment"></i> Message</button>
+                    <button class="btn btn-ai" id="btn-chatgpt"
+                        onclick="handleAiLinkClick('https://chatgpt.com')">C</button>
+                    <button class="btn btn-ai" id="btn-gemini"
+                        onclick="handleAiLinkClick('https://gemini.google.com')">G</button>
+                </div>
             </div>
         </div>
 
@@ -279,7 +331,7 @@
                     <div class="detail-item">
                         <span class="detail-label">Email address</span>
                         <span class="detail-value"><a
-                                href="mailto:adityak.btech23@rvu.edu.in">adityak.btech23@rvu.edu.in</a> (Visible to
+                                href="mailto:adityak.btech23@rvu.edu.in">adityak.btech23@rvu.edu.in</a> <br>(Visible to
                             other course participants)</span>
                     </div>
 
